@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime, timezone
 from colorama import init, Fore, Style
 
@@ -17,7 +18,7 @@ def print_terminal_summary(scan_result):
     target = scan_result["target"]
     findings = scan_result["findings"]
 
-    print(f"\n{Style.BRIGHT}VulnScan Report — {target}{Style.RESET_ALL}")
+    print(f"\n{Style.BRIGHT}VulnScan Report - {target}{Style.RESET_ALL}")
     print(f"Scanned at: {datetime.now(timezone.utc).isoformat()}")
     print(f"Total findings: {len(findings)}\n")
 
@@ -36,6 +37,9 @@ def print_terminal_summary(scan_result):
 
 
 def write_json_report(scan_result, path):
+    directory = os.path.dirname(path)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
     with open(path, "w") as f:
         json.dump(scan_result, f, indent=2, default=str)
 
@@ -59,7 +63,7 @@ def write_html_report(scan_result, path):
 <html>
 <head>
 <meta charset="utf-8">
-<title>VulnScan Report — {target}</title>
+<title>VulnScan Report - {target}</title>
 <style>
   body {{ font-family: Arial, sans-serif; background:#111; color:#eee; padding:2rem; }}
   table {{ width:100%; border-collapse: collapse; margin-top:1rem; }}
@@ -83,5 +87,8 @@ def write_html_report(scan_result, path):
 </body>
 </html>"""
 
+    directory = os.path.dirname(path)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
     with open(path, "w") as f:
         f.write(html)
