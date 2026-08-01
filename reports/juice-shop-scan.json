@@ -1,0 +1,48 @@
+{
+  "target": "https://juice-shop.herokuapp.com",
+  "findings": [
+    {
+      "check": "Missing Security Header",
+      "header": "Content-Security-Policy",
+      "severity": "Medium",
+      "description": "Missing CSP allows a broader range of injection attacks (XSS, data injection) to succeed unmitigated."
+    },
+    {
+      "check": "Missing Security Header",
+      "header": "X-Frame-Options",
+      "severity": "Medium",
+      "description": "Missing X-Frame-Options allows the site to be embedded in an iframe, enabling clickjacking attacks."
+    },
+    {
+      "check": "Missing Security Header",
+      "header": "Strict-Transport-Security",
+      "severity": "Medium",
+      "description": "Missing HSTS allows the site to be accessed over unencrypted HTTP, exposing traffic to interception."
+    },
+    {
+      "check": "Missing Security Header",
+      "header": "X-Content-Type-Options",
+      "severity": "Low",
+      "description": "Missing X-Content-Type-Options allows browsers to MIME-sniff responses, which can lead to content-type confusion issues."
+    },
+    {
+      "check": "Missing Security Header",
+      "header": "Referrer-Policy",
+      "severity": "Low",
+      "description": "Missing Referrer-Policy may leak full URLs to third-party sites via the Referer header."
+    },
+    {
+      "check": "Missing Security Header",
+      "header": "Permissions-Policy",
+      "severity": "Low",
+      "description": "Missing Permissions-Policy leaves browser feature access (camera, geolocation, etc.) unrestricted."
+    },
+    {
+      "check": "Server Banner Disclosure",
+      "header": "Server",
+      "value": "Heroku",
+      "severity": "Low",
+      "description": "The 'Server' header discloses 'Heroku', which can help an attacker identify known vulnerabilities for that specific software/version."
+    }
+  ]
+}

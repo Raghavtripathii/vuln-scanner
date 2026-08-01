@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>VulnScan Report - https://juice-shop.herokuapp.com</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#111; color:#eee; padding:2rem; }
+  table { width:100%; border-collapse: collapse; margin-top:1rem; }
+  th, td { border:1px solid #444; padding:8px; text-align:left; font-size:14px; }
+  th { background:#222; }
+  .sev-critical { background:#4a1010; }
+  .sev-high { background:#4a2b10; }
+  .sev-medium { background:#4a4210; }
+  .sev-low { background:#10334a; }
+  .sev-info { background:#222; }
+</style>
+</head>
+<body>
+  <h1>VulnScan Report</h1>
+  <p>Target: https://juice-shop.herokuapp.com</p>
+  <p>Total findings: 7</p>
+  <table>
+    <tr><th>Severity</th><th>Check</th><th>Details</th></tr>
+    
+        <tr class="sev-medium">
+          <td>Medium</td>
+          <td>Missing Security Header</td>
+          <td>header: Content-Security-Policy; description: Missing CSP allows a broader range of injection attacks (XSS, data injection) to succeed unmitigated.</td>
+        </tr>
+        <tr class="sev-medium">
+          <td>Medium</td>
+          <td>Missing Security Header</td>
+          <td>header: X-Frame-Options; description: Missing X-Frame-Options allows the site to be embedded in an iframe, enabling clickjacking attacks.</td>
+        </tr>
+        <tr class="sev-medium">
+          <td>Medium</td>
+          <td>Missing Security Header</td>
+          <td>header: Strict-Transport-Security; description: Missing HSTS allows the site to be accessed over unencrypted HTTP, exposing traffic to interception.</td>
+        </tr>
+        <tr class="sev-low">
+          <td>Low</td>
+          <td>Missing Security Header</td>
+          <td>header: X-Content-Type-Options; description: Missing X-Content-Type-Options allows browsers to MIME-sniff responses, which can lead to content-type confusion issues.</td>
+        </tr>
+        <tr class="sev-low">
+          <td>Low</td>
+          <td>Missing Security Header</td>
+          <td>header: Referrer-Policy; description: Missing Referrer-Policy may leak full URLs to third-party sites via the Referer header.</td>
+        </tr>
+        <tr class="sev-low">
+          <td>Low</td>
+          <td>Missing Security Header</td>
+          <td>header: Permissions-Policy; description: Missing Permissions-Policy leaves browser feature access (camera, geolocation, etc.) unrestricted.</td>
+        </tr>
+        <tr class="sev-low">
+          <td>Low</td>
+          <td>Server Banner Disclosure</td>
+          <td>header: Server; value: Heroku; description: The 'Server' header discloses 'Heroku', which can help an attacker identify known vulnerabilities for that specific software/version.</td>
+        </tr>
+  </table>
+</body>
+</html>
